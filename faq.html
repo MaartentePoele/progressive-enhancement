@@ -19,13 +19,28 @@
       border: 1px solid black;
       border-radius: .5rem;
       width: fit-content;
+      interpolate-size: allow-keywords;
+    }
+
+    /* animate details dropdown en p en summary stylen */
+    @supports(selector(::details-content)) {
+      details::details-content {
+        opacity: 0;
+        block-size: 0;
+        overflow-y: clip;
+        transition-duration: 1s;
+      }
+
+      details[open]::details-content {
+        opacity: 1;
+        height: auto;
+      }
     }
 
     summary {
       align-items: center;
       display: flex;
       gap: .5rem;
-      list-style: none;
       padding: .25rem .75rem;
     }
 
@@ -74,7 +89,6 @@
     }
 
     summary::before {
-      display: inline-block;
       content: "+";
       font-size: 2rem;
       transition-duration: .25s;
@@ -96,7 +110,6 @@
 <body>
   <h1>Veelgestelde vragen</h1>
 
-  <!-- Content (waar nog wat HTML omheen moet 😄): -->
   <details>
     <summary>
       Wat is frontend development?
